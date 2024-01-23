@@ -5,7 +5,6 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 
-const authMidlleware = require('./middleware/authentication');
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const authRouter = require('./routes/auth');
@@ -15,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1/auth', authRouter);
-app.use('/api/v1/review', authMidlleware, reviewRouter);
+app.use('/api/v1/review', reviewRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);

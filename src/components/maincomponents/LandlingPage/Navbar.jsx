@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
@@ -8,7 +9,7 @@ export default function Navbar() {
   <div className="w-full flex flex-wrap items-center py-4 px-8">
     <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
-        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TalentHive</span>
+        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Dev&Client</span>
     </a>
     <button data-collapse-toggle="navbar-multi-level" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-multi-level" aria-expanded="false">
         <span className="sr-only">Open main menu</span>
@@ -77,8 +78,8 @@ export default function Navbar() {
     </div>
     </div>
     <div className='w-[400px] p-4 flex'>
-    <button className='bg-blue-800 text-white px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign Up</button>
-    <button className='border border-blue-800 text-blue-800 px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign In</button>
+    <Link to='/signup'><button className='bg-blue-800 text-white px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign Up</button></Link>
+    <Link to='/signin'><button className='border border-blue-800 text-blue-800 px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign In</button></Link>
 
     </div>
   </div>

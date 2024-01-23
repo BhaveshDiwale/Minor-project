@@ -33,9 +33,9 @@ const createReview = async (req, res) => {
 };
 
 const getReviews = async (req, res) => {
-  if (!req.user) {
-    throw new UnauthenticatedError('Authentication Invalid');
-  }
+  // if (!req.user) {
+  //   throw new UnauthenticatedError('Authentication Invalid');
+  // }
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
   const offset = (page - 1) * pageSize;
