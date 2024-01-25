@@ -2,8 +2,10 @@ import React, { useState,useRef} from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer,toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup() {
+    const navigate = useNavigate();
     const [userdetail,setUserdetail] = useState({});
     const [token,setToken] = useState("");
     const [username,setUsername] = useState("");
@@ -43,9 +45,20 @@ export default function Signup() {
             });
 
            const response = await data.json();
-           setToken(response.token);
-           setUsername(response.user.username)
-           toast.success("Account created successfully")
+           const status = data.status;
+
+           console.log(status)
+           console.log(response.msg)
+           if(status===400){
+            toast.error(response.msg)
+           }
+           else if(status===200){
+            setToken(response.token);
+            setUsername(response.user.username)
+            toast.success("Account created successfully")
+            navigate('/category')
+           }
+           
         }
     }
   return (
@@ -56,7 +69,7 @@ export default function Signup() {
           <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"/>
           Dev&Client    
       </a>
-    
+    {userdetail.username}
       <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

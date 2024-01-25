@@ -10,7 +10,7 @@ export default function Howtostart() {
        <div className="client w-4/12">
         <h4 className='text-4xl text-gray-800 mb-4'>For Clients</h4>
       <video autoPlay muted loop className='rounded-xl border border-gray-50 shadow-xl border-e-2'>
-        <source src="/images/3 Easy Steps.mp4" type='video/mp4'/>
+        <source src="/images/3 Easy Steps1.mp4" type='video/mp4'/>
       </video>
       
       </div>

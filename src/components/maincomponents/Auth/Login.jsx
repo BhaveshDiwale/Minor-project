@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import { toast,ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
+    const navigate = useNavigate();
     const [userdetail,setUserdetail] = useState({});
     const [token,setToken] = useState("");
     const [username,setUsername] = useState("");
@@ -36,12 +38,18 @@ export default function Login() {
             });
 
            const response = await data.json();
-           if(response.msg){
+           const status = data.status;
+            // console.log(response)
+           if(status===200){
             setToken(response.token);
             setUsername(response.user.username);
-            toast.success(response.msg)
+            toast.success(response.msg);
+            navigate('/dashboard')
            }
-           console.log(response)
+           else if(status===401){
+            toast.error(response.msg)
+           }
+           
           
         }
     }
