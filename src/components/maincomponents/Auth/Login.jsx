@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { toast,ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-export default function Login() {
+export default function Login(props) {
     const navigate = useNavigate();
     const [userdetail,setUserdetail] = useState({});
     const [token,setToken] = useState("");
@@ -44,13 +44,11 @@ export default function Login() {
             setToken(response.token);
             setUsername(response.user.username);
             toast.success(response.msg);
-            navigate('/dashboard')
+            navigate('/dev_dashboard')
            }
            else if(status===401){
             toast.error(response.msg)
            }
-           
-          
         }
     }
 

@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
 export default function Navbar() {
+  const [isLoggedIn,setisLoggedIn] = useState(false);
+  function getStatus(loginstatus){
+    console.log(loginstatus)
+  }
   return (
     <>
     <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 w-full sticky top-0 z-10 ">
@@ -69,17 +72,17 @@ export default function Navbar() {
             </svg></button>
         </li>
         <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+          <Link to='/about' className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</Link>
         </li>
         <li>
-          <a href="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
+          <Link to='/contact' className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</Link>
         </li>
       </ul>
     </div>
     </div>
     <div className='w-[400px] p-4 flex'>
     <Link to='/signup'><button className='bg-blue-800 text-white px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign Up</button></Link>
-    <Link to='/signin'><button className='border border-blue-800 text-blue-800 px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign In</button></Link>
+    <Link to={{pathname:'/signin',state:'getStatus'}}><button className='border border-blue-800 text-blue-800 px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign In</button></Link>
 
     </div>
   </div>
