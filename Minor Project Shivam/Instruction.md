@@ -2,15 +2,6 @@
 
 ## Before using the api calls remember to set the ".env" file according to your configuration.
 
-In the .env file add the following configuration
-
-DATABASE_NAME=minor_project
-MYSQL_USERNAME=your_username
-MYSQL_PASSWORD=your_password
-DATABASE_HOST=your_host
-JWT_SECRET_KEY=CA74CD6B8DFFF7B4DC8E92E93BAA6
-JWT_EXPIRY=30d
-
 ## Error Handling
 
 ### if validation error

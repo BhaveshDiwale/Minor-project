@@ -9,11 +9,13 @@ const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 const authRouter = require('./routes/auth');
 const reviewRouter = require('./routes/reviews');
+const develpoerRouter = require('./routes/developer');
 
 app.use(cors());
 app.use(express.json());
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/dev', develpoerRouter);
 app.use('/api/v1/review', reviewRouter);
 
 app.use(notFoundMiddleware);
