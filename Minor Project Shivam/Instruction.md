@@ -2,15 +2,6 @@
 
 ## Before using the api calls remember to set the ".env" file according to your configuration.
 
-In the .env file add the following configuration
-
-DATABASE_NAME=minor_project
-MYSQL_USERNAME=your_username
-MYSQL_PASSWORD=your_password
-DATABASE_HOST=your_host
-JWT_SECRET_KEY=CA74CD6B8DFFF7B4DC8E92E93BAA6
-JWT_EXPIRY=30d
-
 ## Error Handling
 
 ### if validation error
@@ -196,5 +187,93 @@ In case of page is more than the number of reviews than you will get folllowing 
 ```
 {
 "msg": "No more reviews."
+}
+```
+
+# Developer
+
+## Creation of Developer
+
+Make sure that the user is logged in and has the category of Developer.
+
+API call:`localhost:8080/api/v1/dev/create-dev-profile`
+
+eg:
+
+```
+await fetch('http://localhost:8080/api/v1/dev/create-dev-profile', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+'Authorization':'Bearer ${token}'
+},
+body: JSON.stringify({ name, bio, qualification, instituteName, experience, skill }),
+});
+
+```
+
+here skill is an array which contains the skill id
+as follows:
+
+('S1', 'HTML'),
+('S2', 'CSS'),
+('S3', 'Javascript'),
+('S4', 'React JS'),
+('S5', 'Next.js'),
+('S6', 'Wordpress'),
+('S7', 'Shopify'),
+('S8', 'Wix'),
+('S9', 'Figma'),
+('S10', 'Node.js'),
+('S11', 'Express'),
+('S12', 'MongoDB'),
+('S13', 'MySQL'),
+('S14', 'UI/UX'),
+('S15', 'PHP'),
+('S16', 'Bootstrap'),
+('S17', 'JQuery');
+
+Remember to pass only the Skill Id in skill array like
+
+```
+skill=['S1','S2']
+
+```
+
+it will give following response on successfull creation
+
+```
+{ msg: 'Developer Profile Created' }
+```
+
+## Fetching developer info
+
+make sure that user is logged in and the category is Developer otherwise both creation and fetching won't work
+
+API call:`localhost:8080/api/v1/dev/get-dev-profile`
+
+eg:
+
+```
+await fetch('http://localhost:8080/api/v1/dev/get-dev-profile', {
+method: 'GET',
+headers: {
+'Content-Type': 'application/json',
+'Authorization':'Bearer ${token}'
+},
+});
+```
+
+on success the response will contain following json
+
+```
+{
+    "dev_id": dev_id,
+    "dev_name": dev_name,
+    "bio": bio,
+    "qualification": qualification,
+    "institute_name": institute_name,
+    "experience_year": work Experince in years,
+    "skills": array of skills in string
 }
 ```

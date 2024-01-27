@@ -21,18 +21,8 @@ const register = async (req, res) => {
     username: username,
     password: hashedPassword,
   });
-  const token = jwt.sign(
-    {
-      userId: newUser.id,
-      username: newUser.username,
-      category: newUser.category,
-    },
-    process.env.JWT_SECRET_KEY,
-    { expiresIn: process.env.JWT_EXPIRY }
-  );
-  return res
-    .status(200)
-    .json({ user: { username: newUser.username }, token: token });
+
+  return res.status(200).json({ msg: 'User registered' });
 };
 
 const registerCategory = async (req, res) => {
@@ -46,13 +36,25 @@ const registerCategory = async (req, res) => {
     throw new UnauthenticatedError('Authentication Invalid');
   }
   const { category } = req.body;
+  console.log(req.user);
   const user = await User.findByPk(req.user.userId);
   if (!user) {
     return res.status(404).json({ msg: 'User not Found' });
   }
   user.category = category;
+  const token = jwt.sign(
+    {
+      userId: user.id,
+      username: user.username,
+      category: user.category,
+    },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: process.env.JWT_EXPIRY }
+  );
   await user.save();
-  return res.status(200).json({ msg: 'Category added Successfully' });
+  return res
+    .status(200)
+    .json({ msg: 'Category added Successfully', token: token });
 };
 
 const login = async (req, res, next) => {
@@ -82,13 +84,13 @@ const login = async (req, res, next) => {
     {
       userId: user.id,
       username: user.username,
+      category: user.category,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: process.env.JWT_EXPIRY }
   );
 
   return res.status(200).json({
-    user: { username: user.username },
     token: token,
     msg: 'Login Successful',
   });

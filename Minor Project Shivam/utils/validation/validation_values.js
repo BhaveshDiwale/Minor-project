@@ -30,8 +30,20 @@ const reviewBodyValidation = [
     .withMessage('Review title must be of minimum 6 characters long'),
 ];
 
+const createDevBodyValidation = [
+  body('name').isString().withMessage('Name must be string'),
+  body('bio')
+    .isString()
+    .isLength({ min: 10, max: 100 })
+    .withMessage('Bio must be atleast 10 and atmost 100 characters long'),
+  body('qualification').isString().withMessage('Must be String'),
+  body('instituteName').isString().withMessage('Must be String'),
+  body('experience').isInt().withMessage('Must be Integer'),
+];
+
 module.exports = {
   registerValidation,
   registerCategoryValidation,
   reviewBodyValidation,
+  createDevBodyValidation,
 };

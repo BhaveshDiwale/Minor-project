@@ -33,9 +33,9 @@ const createReview = async (req, res) => {
 };
 
 const getReviews = async (req, res) => {
-  // if (!req.user) {
-  //   throw new UnauthenticatedError('Authentication Invalid');
-  // }
+  if (!req.user) {
+    throw new UnauthenticatedError('Authentication Invalid');
+  }
   const page = parseInt(req.query.page) || 1;
   const pageSize = 5;
   const offset = (page - 1) * pageSize;
@@ -65,4 +65,53 @@ const getReviews = async (req, res) => {
   return res.status(200).json({ reviews: reviewData, totalReviews: count });
 };
 
-module.exports = { createReview, getReviews };
+const deleteReview = async (req, res) => {
+  if (!req.user) {
+    throw new UnauthenticatedError('Authentication Invalid');
+  }
+  const { reviewId } = req.body;
+  const review = await Review.findByPk(reviewId);
+  if (!review) {
+    throw new BadRequestError('No Review Found');
+  }
+  if (review.userId != req.user.userId) {
+    throw new UnauthenticatedError('Authentication Invalid');
+  }
+  await review.destroy();
+  return res.status(200).json({ msg: 'Review deleted successfully' });
+};
+
+const updateReview = async (req, res) => {
+  const error = validationResult(req);
+  if (!error.isEmpty()) {
+    return res
+      .status(400)
+      .json({ errors: error.array().map((error) => error.msg) });
+  }
+  if (!req.user) {
+    throw new UnauthenticatedError('Authentication Invalid');
+  }
+  const { title, description, rating, reviewId } = req.body;
+  const review = await Review.findByPk(reviewId);
+  if (!review) {
+    throw new BadRequestError('No Review Found');
+  }
+  if (review.userId != req.user.userId) {
+    throw new UnauthenticatedError('Authentication Invalid');
+  }
+  await review.update(
+    {
+      review_title: title,
+      review_description: description,
+      rating: rating,
+    },
+    {
+      where: {
+        review_id: reviewId,
+      },
+    }
+  );
+  return res.status(200).json({ review: { review } });
+};
+
+module.exports = { createReview, getReviews, deleteReview, updateReview };
