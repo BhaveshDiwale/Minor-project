@@ -96,9 +96,31 @@ export default function About() {
                 <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
                     <img src="/images/about.jpg" alt=""
                         className="relative object-cover w-full rounded-lg"/>
-                </div>
-            </div>
-        </div>
+                    <h2 className='text-5xl text-gray-800 my-4'>Credits</h2>
+                    
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/pair-programming-concept-illustration_8449769.htm#fromView=search&term=developer&track=ais&regularType=vector&page=1&position=16&uuid=cbef1806-02c1-48c4-8895-acba5f4e260a">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/privacy-policy-concept-illustration_20547283.htm#query=login&position=1&from_view=search&track=sph&uuid=4a16b643-223f-4e4a-acd9-68fc1d3bcac3">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/sign-up-concept-illustration_20824341.htm#query=signup&position=2&from_view=search&track=sph&uuid=36ebbc5f-c1ba-42b5-b017-4bc6c033914c">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/live-collaboration-concept-illustration_6183491.htm#fromView=search&term=client+starting&track=ais&regularType=vector&page=1&position=9&uuid=26247325-d44b-4ac9-952f-bd8a3b755edf">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/people-search-concept-illustration_6203414.htm#fromView=search&term=client&track=ais&regularType=vector&page=1&position=18&uuid=19dfc3fb-f3c4-466a-8672-3457c51e3c6a">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/programmer-concept-illustration_8775515.htm#fromView=search&term=developer&track=ais&regularType=vector&page=1&position=1&uuid=90c209ee-a2a7-47fd-9701-f357a5819841">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/programming-concept-illustration_7118755.htm#fromView=search&term=developer&track=ais&regularType=vector&page=1&position=6&uuid=69418386-58e2-400d-8d26-4c200f576723">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/business-deal-concept-illustration_7119384.htm#fromView=search&term=client&track=ais&regularType=vector&page=1&position=26&uuid=c38e755d-be18-40c0-a30c-098014cd4cdf">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/privacy-policy-concept-illustration_20547283.htm#query=signup&position=1&from_view=search&track=sph&uuid=21f1f288-e7fe-48d1-a96e-da7606fc19cf">Image by storyset</a> on Freepik</div>
+
+                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/forming-team-leadership-concept-illustration_35294599.htm#fromView=search&term=+team&track=sph&regularType=vector&page=1&position=2&uuid=a6831d25-2c39-4923-858e-5b03923580c0">Image by storyset</a> on Freepik</div>
+                  </div>
+                  </div>
+              </div>
+        
     </section>
     </>
   )

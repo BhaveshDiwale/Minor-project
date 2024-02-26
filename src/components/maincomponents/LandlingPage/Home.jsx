@@ -7,14 +7,15 @@ import Footer from './Footer'
 import Loadingbar from './LoadingBar'
 import Reviews from './Reviews'
 
-export default function Home() {
+export default function Home(props) {
+  // console.log(props.loginstatus)
   return (
     <>
-      <Navbar/>
+      <Navbar loginstatus={props.loginstatus}/>
       <Banner/>
       <Howtostart/>
       <WhyChooseUs/>
-      <Reviews/>
+      {/* <Reviews/> */}
       <Footer/>
     </>
   )
