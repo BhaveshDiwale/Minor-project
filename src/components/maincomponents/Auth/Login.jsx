@@ -1,9 +1,12 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import { toast,ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { LoginContext } from '../../../Store' ;
 export default function Login(props) {
+    const loginContext = useContext(LoginContext);
+    console.log(loginContext)
     const navigate = useNavigate();
     const [userdetail,setUserdetail] = useState({});
     const [token,setToken] = useState("");
@@ -42,9 +45,9 @@ export default function Login(props) {
             console.log(response)
            if(status===200){
             setToken(response.token);
-            // setUsername(response.user.username);
+            // console.log(response.username);
             toast.success(response.msg);
-            props.getStatus(true);
+            loginContext.loginDispatch({type:"Completed",username:response.username})
             // navigate(`/${response.category}_dashboard`)
             navigate('/dev_dashboard')
            }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { createContext, useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Avatar,
@@ -10,14 +10,13 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card"
-export default function Navbar(props) {  
-  // console.log(props.loginstatus);
-  let status = props.loginstatus;
-  console.log(status)
-
-
+import { LoginContext } from '../../../Store'
+export default function Navbar() {  
+  const loginContext = useContext(LoginContext)
+  console.log("Navbar"+loginContext.loginState.status)
   return (
     <>
+    
     <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 w-full sticky top-0 z-10 ">
         <div className="flex items-center">
   <div className="w-full flex flex-wrap items-center py-4 px-8">
@@ -64,49 +63,46 @@ export default function Navbar(props) {
         <li>
           <Link to='/contact' className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" >Contact</Link>
         </li>
-        {/* <li className="text-red-800"> {loginstatus}</li> */}
+        
 
       </ul>
     </div>
     </div>
-
-    {status===false?<> <div className='w-[400px] p-4 flex'>
-    <Link to='/signup'><button className='bg-blue-800 text-white px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign Up</button></Link>
-    <Link to='/signin'><button className='border border-blue-800 text-blue-800 px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign In</button></Link>
-  
-    </div></>
+    {loginContext.loginState.status===0 ||loginContext.loginState.status===undefined?
+        <> <div className='w-[400px] p-4 flex'>
+        <Link to='/signup'><button className='bg-blue-800 text-white px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign Up</button></Link>
+        <Link to='/signin'><button className='border border-blue-800 text-blue-800 px-8 py-2 rounded-3xl mx-2 hover:bg-blue-900 hover:text-white'>Sign In</button></Link>
+      
+        </div></>
     :
     <div className='pe-8'>
-    {/* {JSON.stringify(status)} */}
-      <HoverCard openDelay={0} >
-             <HoverCardTrigger className='cursor-pointer flex items-center'>
-             <Avatar className='w-12 h-12'>
-             <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-             <AvatarFallback>CN</AvatarFallback>
-             </Avatar>
-             </HoverCardTrigger>
-             <HoverCardContent >
-             <ul className="text-sm text-gray-700 dark:text-gray-200" >
-                  <li>
-                    <Link to='/dev_dashboard' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
-                  </li>
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
-                  </li>
-                  <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Applications</a>
-                  </li>
-                  <li>
-                    <Link to='/' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={()=>{status=false}}>Logout</Link>
-                  </li>
-                </ul>
-             </HoverCardContent>
-              </HoverCard>
-    </div>
-    // {/* <> */}
-   
-     }
+    <HoverCard openDelay={0} >
+           <HoverCardTrigger className='cursor-pointer flex items-center'>
+           <Avatar className='w-12 h-12'>
+           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+           <AvatarFallback className="text-xs">{loginContext.loginState.username}</AvatarFallback>
+           </Avatar>
+           </HoverCardTrigger>
+           <HoverCardContent >
+           <ul className="text-sm text-gray-700 dark:text-gray-200" >
+                <li>
+                  <Link to='/dev_dashboard' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</Link>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Profile</a>
+                </li>
+                <li>
+                  <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">My Applications</a>
+                </li>
+                <li>
+                  <Link to='/' className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" onClick={()=>{loginContext.loginDispatch({type:"Logout"})}}>Logout</Link>
+                </li>
+              </ul>
+           </HoverCardContent>
+            </HoverCard>
+  </div>
     
+    }    
   </div>
 
 </nav>

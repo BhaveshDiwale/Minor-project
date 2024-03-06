@@ -19,7 +19,7 @@ export default function ClientAddForm() {
   </svg>
     <span className="sr-only">Icon description</span>
     </button></SheetTrigger>
-  <SheetContent side="top">
+  <SheetContent side="bottom">
     <div className="container">
        
     <form>
@@ -53,9 +53,9 @@ export default function ClientAddForm() {
  <input
     type="file"
     class="block w-full text-sm text-slate-500 mb-8
-        file:mr-4 file:py-2 file:px-4 file:rounded-md
+        file:mr-4 file:py-2 file:px-4 
         file:border-0 file:text-sm file:font-semibold
-        file:bg-blue-50 file:text-blue-700 file:cursor-pointer
+        file:cursor-pointer
         hover:file:bg-blue-100"
   />
 

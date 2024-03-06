@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function Howtostart() {
   return (
@@ -28,7 +29,7 @@ export default function Howtostart() {
       </div>
 
       <div className='w-4/12 mx-auto mb-28'>
-      <button className='w-full mx-auto bg-blue-800 hover:bg-blue-900 font-bold text-2xl rounded-xl p-4 text-white'>Sign Up Now!</button>
+      <Link to={'/signup'}><button className='w-full mx-auto bg-blue-800 hover:bg-blue-900 font-bold text-2xl rounded-xl p-4 text-white'>Sign Up Now!</button></Link>
       </div>
       </div>
     </>
