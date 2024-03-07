@@ -1,9 +1,12 @@
-import React,{useState} from 'react'
+import React,{useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import { toast,ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
+import { LoginContext } from '../../../Store' ;
 export default function Login(props) {
+    const loginContext = useContext(LoginContext);
+    console.log(loginContext)
     const navigate = useNavigate();
     const [userdetail,setUserdetail] = useState({});
     const [token,setToken] = useState("");
@@ -24,7 +27,7 @@ export default function Login(props) {
         else if(userdetail.username.length<8){
             toast.error("Username must be at least 8 characters.")
         }
-        else if(userdetail.password.length<8){
+         if(userdetail.password.length<8){
             toast.error("Password must be at least 8 characters.")
         }
 
@@ -39,11 +42,13 @@ export default function Login(props) {
 
            const response = await data.json();
            const status = data.status;
-            // console.log(response)
+            console.log(response)
            if(status===200){
             setToken(response.token);
-            setUsername(response.user.username);
+            // console.log(response.username);
             toast.success(response.msg);
+            loginContext.loginDispatch({type:"Completed",username:response.username})
+            // navigate(`/${response.category}_dashboard`)
             navigate('/dev_dashboard')
            }
            else if(status===401){
@@ -60,7 +65,7 @@ export default function Login(props) {
           <img className="w-8 h-8 mr-2" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/logo.svg" alt="logo"/>
           Dev&Client    
       </a>
-    
+        {userdetail.username}
       <div className="w-full bg-white rounded-lg shadow-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">

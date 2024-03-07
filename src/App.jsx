@@ -8,11 +8,16 @@ import Category from './components/maincomponents/Category/Category'
 import ClientDashboard from './components/maincomponents/Dashboard/ClientDashboard'
 import About from './components/maincomponents/AboutUs/About'
 import Contact from './components/maincomponents/ContactUs/Contact'
-function App() {
+import { BrowserRouter } from 'react-router-dom'
+import UserDetailsForm from './components/maincomponents/UserDetails/UserDetailsForm'
+import Profile from './components/maincomponents/Profile/Profile'
+
+ function App(){
   return (
     <>
+    <BrowserRouter>
     <Routes>
-      <Route path='/' element={<Home/>}/>
+      <Route path='/' element={<Home />}/>
       <Route path='/signin' element={<Login/>}/>
       <Route path='/signup' element={<Signup/>}/>
       <Route path='/dev_dashboard' element={<DevDashboard/>}/>
@@ -20,7 +25,11 @@ function App() {
       <Route path='/category' element={<Category/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/contact' element={<Contact/>}/>
+      <Route path='/user_details' element={<UserDetailsForm/>}/>
+      <Route path='/profile' element={<Profile/>}/>
     </Routes>
+    </BrowserRouter>
+
     </>
   )
 }

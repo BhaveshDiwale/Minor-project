@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { createContext, useContext, useReducer } from 'react'
 import Navbar from './Navbar'
 import Banner from './Banner'
 import Howtostart from './Howtostart'
 import WhyChooseUs from './WhyChooseUs'
 import Footer from './Footer'
-import Loadingbar from './LoadingBar'
-import Reviews from './Reviews'
+// import { LoginContext } from '../../../App'
 
 export default function Home() {
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <Banner/>
       <Howtostart/>
       <WhyChooseUs/>
-      <Reviews/>
+      {/* <Reviews/> */}
       <Footer/>
     </>
   )

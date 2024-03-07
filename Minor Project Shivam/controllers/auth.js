@@ -21,8 +21,17 @@ const register = async (req, res) => {
     username: username,
     password: hashedPassword,
   });
+  const token = jwt.sign(
+    {
+      userId: user.id,
+      username: user.username,
+      category: user.category,
+    },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: process.env.JWT_EXPIRY }
+  );
 
-  return res.status(200).json({ msg: 'User registered' });
+  return res.status(200).json({ msg: 'User registered', token:token});
 };
 
 const registerCategory = async (req, res) => {
@@ -93,6 +102,8 @@ const login = async (req, res, next) => {
   return res.status(200).json({
     token: token,
     msg: 'Login Successful',
+    category: user.category,
+    username:user.username
   });
 };
 
