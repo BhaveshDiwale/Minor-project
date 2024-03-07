@@ -190,67 +190,158 @@ In case of page is more than the number of reviews than you will get folllowing 
 }
 ```
 
-# Developer
+# Client
 
-## Creation of Developer
+## Client Creation
 
-Make sure that the user is logged in and has the category of Developer.
+To Create Client on a local machine:
 
-API call:`localhost:8080/api/v1/dev/create-dev-profile`
+API call: `localhost:8080/api/v1/client/create-client-profile`
 
 eg:
 
 ```
-await fetch('http://localhost:8080/api/v1/dev/create-dev-profile', {
+await fetch('http://localhost:8080/api/v1/client/create-client-profile',
+, {
 method: 'POST',
 headers: {
 'Content-Type': 'application/json',
 'Authorization':'Bearer ${token}'
 },
-body: JSON.stringify({ name, bio, qualification, instituteName, experience, skill }),
+body: JSON.stringify({ name,bio,dev_testimonial,project }),
 });
 
 ```
 
-here skill is an array which contains the skill id
-as follows:
-
-('S1', 'HTML'),
-('S2', 'CSS'),
-('S3', 'Javascript'),
-('S4', 'React JS'),
-('S5', 'Next.js'),
-('S6', 'Wordpress'),
-('S7', 'Shopify'),
-('S8', 'Wix'),
-('S9', 'Figma'),
-('S10', 'Node.js'),
-('S11', 'Express'),
-('S12', 'MongoDB'),
-('S13', 'MySQL'),
-('S14', 'UI/UX'),
-('S15', 'PHP'),
-('S16', 'Bootstrap'),
-('S17', 'JQuery');
-
-Remember to pass only the Skill Id in skill array like
+example body :
 
 ```
-skill=['S1','S2']
+{
+    "name":"Test Test",
+    "bio":"This is a test client",
+    "dev_testimonial":"This is client has good reputation",
+    "projects":[{
+        "project_name":"project 1",
+        "project_description":"project_description 1",
+        "wage":100
+    },
+    {
+        "project_name":"project 2",
+        "project_description":"project_description 2",
+        "wage":200
+    }
+    ]
+}
+```
+
+Upon success, the response the response will be
+
+```
+{
+"msg": "Client Profile Created",
+}
+```
+
+## Get Client
+
+To Get Client on a local machine:
+
+API call: `localhost:8080/api/v1/client/get-client-profile`
+
+eg:
+
+```
+await fetch('http://localhost:8080/api/v1/client/get-client-profile', {
+method: 'GET',
+headers: {
+'Content-Type': 'application/json',
+'Authorization':'Bearer ${token}'
+},
+});
+```
+
+Upon success, the response will be
+
+```
+{
+    "client_id": 1,
+    "client_name": "Test Test",
+    "bio": "This is a test client",
+    "dev_testimonial": "This is client has good reputation",
+    "project": [
+        {
+            "project_id": 1,
+            "project_name": "project 1",
+            "project_description": "project_description 1",
+            "wage": 100,
+            "client_id": 1,
+            "dev_id": null,
+            "createdAt": "2024-03-07T16:26:17.000Z",
+            "updatedAt": "2024-03-07T16:26:17.000Z"
+        },
+        {
+            "project_id": 2,
+            "project_name": "project 2",
+            "project_description": "project_description 2",
+            "wage": 200,
+            "client_id": 1,
+            "dev_id": null,
+            "createdAt": "2024-03-07T16:26:17.000Z",
+            "updatedAt": "2024-03-07T16:26:17.000Z"
+        }
+    ]
+}
+```
+
+# Developer
+
+## Developer Creation
+
+To Create Developer on a local machine:
+
+API call: `localhost:8080/api/v1/dev/create-dev-profile`
+
+eg:
+
+```
+await fetch('http://localhost:8080/api/v1/dev/create-dev-profile',
+, {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+'Authorization':'Bearer ${token}'
+},
+body: JSON.stringify({ name,bio,qualification,instituteName,experience,skill }),
+});
 
 ```
 
-it will give following response on successfull creation
+example body :
 
 ```
-{ msg: 'Developer Profile Created' }
+{
+    "name":"Shivam",
+    "bio":"I am Aspiring flutter developer",
+    "qualification":"B.Tech IT",
+    "instituteName":"JEC Jabalpur",
+    "experience":0,
+    "skill":["S1","S15"]
+}
 ```
 
-## Fetching developer info
+Upon success, the response the response will be
 
-make sure that user is logged in and the category is Developer otherwise both creation and fetching won't work
+```
+{
+"msg": "Developer Profile Created",
+}
+```
 
-API call:`localhost:8080/api/v1/dev/get-dev-profile`
+## Get Developer
+
+To Get Developer on a local machine:
+
+API call: `localhost:8080/api/v1/dev/get-dev-profile`
 
 eg:
 
@@ -264,16 +355,16 @@ headers: {
 });
 ```
 
-on success the response will contain following json
+Upon success, the response will be
 
 ```
 {
-    "dev_id": dev_id,
-    "dev_name": dev_name,
-    "bio": bio,
-    "qualification": qualification,
-    "institute_name": institute_name,
-    "experience_year": work Experince in years,
-    "skills": array of skills in string
+    "dev_id": 2,
+    "dev_name": "DevName",
+    "bio": "This is a bio",
+    "qualification": "B.Tech IT",
+    "institute_name": "JEC Jabalpur",
+    "experience_year": 0,
+    "skills": []
 }
 ```

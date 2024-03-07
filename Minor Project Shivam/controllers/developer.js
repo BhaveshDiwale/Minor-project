@@ -4,7 +4,6 @@ const Developer = require('../models/developers');
 const DevSkill = require('../models/helping_tables/developer_skill');
 const Skill = require('../models/helping_tables/skills');
 const User = require('../models/users');
-const { where } = require('sequelize');
 
 const createDevProfile = async (req, res) => {
   const error = validationResult(req);
@@ -13,7 +12,6 @@ const createDevProfile = async (req, res) => {
       .status(400)
       .json({ errors: error.array().map((error) => error.msg) });
   }
-  console.log(req.user);
   if (!req.user) {
     throw new UnauthenticatedError('Authentication Invalid');
   }
@@ -55,7 +53,6 @@ const getDevProfile = async (req, res) => {
   if (!user) {
     throw new UnauthenticatedError('User does not exist');
   }
-  console.log(req.user.use);
   const developerInfo = await Developer.findByPk(req.user.userId);
   if (!developerInfo) {
     return res.status(404).json({ msg: 'Developer Profile does not exist' });
