@@ -368,3 +368,8 @@ Upon success, the response will be
     "skills": []
 }
 ```
+## Skill array code
+```
+[('S1', 'HTML'), ('S2', 'CSS'), ('S3', 'Javascript'), ('S4', 'React JS'), ('S5', 'Next.js'), ('S6', 'Wordpress'), ('S7', 'Shopify'), ('S8', 'Wix'), ('S9', 'Figma'), ('S10', 'Node.js'), ('S11', 'Express'), ('S12', 'MongoDB'), ('S13', 'MySQL'), ('S14', 'UI/UX'), ('S15', 'PHP'), ('S16', 'Bootstrap'), ('S17', 'JQuery');
+]
+```
