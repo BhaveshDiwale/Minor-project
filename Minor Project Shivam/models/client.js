@@ -17,17 +17,9 @@ const Client = sequelize.define('Client', {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  qualification: {
+  dev_testimonial: {
     type: DataTypes.STRING,
     allowNull: false,
-  },
-  institute_name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  experience_year: {
-    type: DataTypes.DATEONLY,
-    allowNull: true,
   },
 });
 

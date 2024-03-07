@@ -41,9 +41,24 @@ const createDevBodyValidation = [
   body('experience').isInt().withMessage('Must be Integer'),
 ];
 
+const createClientBodyValidation = [
+  body('name').isString().withMessage('Name must be string'),
+  body('bio')
+    .isString()
+    .isLength({ min: 10, max: 100 })
+    .withMessage('Bio must be atleast 10 and atmost 100 characters long'),
+  body('dev_testimonial')
+    .isString()
+    .isLength({ min: 10, max: 100 })
+    .withMessage(
+      'Developer Testimonial must be atleast 10 and atmost 100 characters long'
+    ),
+];
+
 module.exports = {
   registerValidation,
   registerCategoryValidation,
   reviewBodyValidation,
   createDevBodyValidation,
+  createClientBodyValidation,
 };

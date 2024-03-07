@@ -17,7 +17,7 @@ const register = async (req, res) => {
     throw new BadRequestError('Username alredy exist');
   }
   const hashedPassword = await bcrypt.hash(password, 12);
-  const newUser = await User.create({
+  await User.create({
     username: username,
     password: hashedPassword,
   });
