@@ -12,26 +12,26 @@ const register = async (req, res) => {
       .json({ errors: error.array().map((error) => error.msg) });
   }
   const { username, password } = req.body;
-  const user = await User.findOne({ where: { username: username } });
-  if (user) {
+  const existingUser = await User.findOne({ where: { username: username } });
+  if (existingUser) {
     throw new BadRequestError('Username alredy exist');
   }
   const hashedPassword = await bcrypt.hash(password, 12);
-  await User.create({
+  const newUser = await User.create({
     username: username,
     password: hashedPassword,
   });
   const token = jwt.sign(
     {
-      userId: user.id,
-      username: user.username,
-      category: user.category,
+      userId: newUser.id,
+      username: newUser.username,
+      category: newUser.category,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: process.env.JWT_EXPIRY }
   );
 
-  return res.status(200).json({ msg: 'User registered', token:token});
+  return res.status(200).json({ msg: 'User registered', token: token });
 };
 
 const registerCategory = async (req, res) => {
@@ -103,7 +103,7 @@ const login = async (req, res, next) => {
     token: token,
     msg: 'Login Successful',
     category: user.category,
-    username:user.username
+    username: user.username,
   });
 };
 
