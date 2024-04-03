@@ -96,7 +96,7 @@ export default function About() {
                 <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
                     <img src="/images/about.jpg" alt=""
                         className="relative object-cover w-full rounded-lg"/>
-                    <h2 className='text-5xl text-gray-800 my-4'>Credits</h2>
+                    {/* <h2 className='text-5xl text-gray-800 my-4'>Credits</h2>
                     
                     <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/pair-programming-concept-illustration_8449769.htm#fromView=search&term=developer&track=ais&regularType=vector&page=1&position=16&uuid=cbef1806-02c1-48c4-8895-acba5f4e260a">Image by storyset</a> on Freepik</div>
 
@@ -116,8 +116,8 @@ export default function About() {
 
                     <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/privacy-policy-concept-illustration_20547283.htm#query=signup&position=1&from_view=search&track=sph&uuid=21f1f288-e7fe-48d1-a96e-da7606fc19cf">Image by storyset</a> on Freepik</div>
 
-                    <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/forming-team-leadership-concept-illustration_35294599.htm#fromView=search&term=+team&track=sph&regularType=vector&page=1&position=2&uuid=a6831d25-2c39-4923-858e-5b03923580c0">Image by storyset</a> on Freepik</div>
-                  </div>
+  <div className='flex'><a target='_blank' className='block' href="https://www.freepik.com/free-vector/forming-team-leadership-concept-illustration_35294599.htm#fromView=search&term=+team&track=sph&regularType=vector&page=1&position=2&uuid=a6831d25-2c39-4923-858e-5b03923580c0">Image by storyset</a> on Freepik</div>*/}
+                  </div> 
                   </div>
               </div>
         

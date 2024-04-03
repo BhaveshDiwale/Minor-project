@@ -1,10 +1,12 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-
+import { LoginContext } from '../../../Store' ;
 export default function UserDetailsForm() {
+  const loginContext = useContext(LoginContext);
   const location = useLocation();
   const navigate = useNavigate();
   const handleSubmit = ()=>{
+    loginContext.loginDispatch({type:"Completed"})
     navigate(`/${location.state.role}_dashboard`)
   }
   return (

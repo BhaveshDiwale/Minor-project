@@ -51,9 +51,11 @@ export default function Signup() {
         toast.error(response.msg);
       } else if (status === 200) {
         setToken(response.token);
-        setUsername(response.user.username);
+        setUsername(response.user);
         toast.success('Account created successfully');
+        setTimeout(()=>{
         navigate('/category');
+        },3000);
       }
     }
   };
